@@ -1,0 +1,9 @@
+# Folders
+build/
+dist/
+node_modules/
+
+# Files
+yarn-error.log
+.envrc
+.env

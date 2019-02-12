@@ -1,0 +1,53 @@
+{
+	"root": true,
+	"extends": [
+		"eslint-config-airbnb"
+	],
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true,
+		"mocha": true
+	},
+	"globals": {},
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"ecmaFeatures": {
+				"jsx": true
+		},
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"plugins": [
+		"mocha",
+		"chai-friendly",
+		"react"
+	],
+	"rules": {
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"quotes": [
+			"error",
+			"single"
+		],
+		"semi": [
+			"error",
+			"always"
+		],
+		"comma-dangle": [
+			"error",
+			"always-multiline"
+    ],
+    "import/prefer-default-export": "never","import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1, { "extensions": [".js"] }
+    ]
+	}
+}
