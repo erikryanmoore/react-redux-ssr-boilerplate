@@ -2,7 +2,7 @@ import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 export const prod = {
-  devtool: '',
+  devtool: 'source-map',
   mode: 'production',
   optimization: {
     minimizer: [

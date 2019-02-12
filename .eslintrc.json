@@ -9,7 +9,11 @@
 		"node": true,
 		"mocha": true
 	},
-	"globals": {},
+	"globals": {
+		"CONTENTFUL_ACCESS_TOKEN": true,
+		"CONTENTFUL_SPACE_ID": true,
+		"CONTENTFUL_HOST_URL": true
+	},
 	"parser": "babel-eslint",
 	"parserOptions": {
 		"ecmaFeatures": {

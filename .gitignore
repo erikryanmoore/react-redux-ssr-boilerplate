@@ -7,3 +7,8 @@ node_modules/
 yarn-error.log
 .envrc
 .env
+
+# Elastic Beanstalk Files
+# .elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

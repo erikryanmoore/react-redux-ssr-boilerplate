@@ -4,7 +4,7 @@ import { scrollTop } from '../../hoc/scrollTop';
 
 const Home = () => (
   <h1>
-    Home
+    Home Page
   </h1>
 );
 

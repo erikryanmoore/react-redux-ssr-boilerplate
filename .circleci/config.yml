@@ -1,0 +1,53 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: circleci/python:3.7
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - type: checkout
+      - type: shell
+        name: Install Docker Client
+        command: |
+          echo "test"
+          curl -L -o /tmp/docker.tgz https://get.docker.com/builds/Linux/x86_64/docker-1.12.3.tgz
+          tar -xz -C /tmp -f /tmp/docker.tgz
+          sudo mv /tmp/docker/docker* /usr/bin/
+      - type: setup-docker-engine
+      - type: shell
+        name: Verify Docker is running
+        command: |
+          docker --version
+      - run:
+          name: Install awscli
+          command: |
+            sudo pip install awsebcli --upgrade
+      - run:
+          name: Create AWS credentials
+          command: |
+            mkdir ~/.aws
+            touch ~/.aws/config
+            chmod 600 ~/.aws/config
+            echo "[profile eb-cli]" > ~/.aws/config
+            echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
+            echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t erikryanmoore/react-redux-ssr-boilerplate .
+      - run:
+          name: Deploy to Elastic Beanstalk
+          command: |
+            eb use react-redux-ssr-boilerplate-dev -r us-west-2 --profile eb-cli
+            eb deploy --profile eb-cli
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
